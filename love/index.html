@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <a href="./style.css"></a>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="vi">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Thiệp 8/3</title>
+        <link rel="stylesheet" href="style.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+      </head>
+
+      <body>
+        <div class="flowers"></div>
+
+        <h1>🌸 Thiệp Chúc Mừng 8/3 🌸</h1>
+
+        <div class="form">
+          <input type="text" id="name" placeholder="Nhập tên" />
+
+          <input type="date" id="birth" />
+
+          <input type="file" id="imageInput" accept="image/*" />
+
+          <label>Chọn khung thiệp:</label>
+
+          <select id="frame">
+            <option value="frame1">Hồng dễ thương</option>
+            <option value="frame2">Hoa nhẹ nhàng</option>
+            <option value="frame3">Trái tim</option>
+          </select>
+
+          <button onclick="createCard()">Tạo Thiệp</button>
+        </div>
+
+        <div id="card" class="card frame1">
+          <h2>💐 Happy Women's Day 💐</h2>
+
+          <img id="preview" />
+
+          <p id="cardName"></p>
+          <p id="cardBirth"></p>
+
+          <p class="wish">
+            Chúc bạn ngày 8/3 thật nhiều niềm vui, luôn xinh đẹp, hạnh phúc và
+            thành công 💖
+          </p>
+        </div>
+
+        <div class="buttons">
+          <button onclick="downloadCard()">💖 Tải Thiệp</button>
+
+          <button onclick="shareCard()">📱 Chia sẻ</button>
+        </div>
+
+        <script src="script.js"></script>
+      </body>
+    </html>
+    <script src="./script.js"></script>
+  </body>
+</html>

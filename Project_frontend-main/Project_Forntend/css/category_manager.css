@@ -1,0 +1,488 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    background-color: #e9ecef;
+    color: #212529;
+    line-height: 1.5;
+    padding-bottom: 60px; /* Đảm bảo có không gian cho footer */
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  /* Responsive breakpoints */
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
+
+  /* Header */
+  .app-header {
+    background-color: #212529; /* Hơi tối hơn màu đen tuyền */
+    padding: 0.75rem 0; /* Giảm padding */
+    color: #fff;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-container .project {
+    color: white;
+  }
+  .app-title {
+    margin: 0;
+    font-size: 1.5rem; /* Tiêu đề hơi nhỏ hơn */
+    font-weight: 500;
+  }
+  .main-nav a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    margin-left: 1rem; /* Giảm khoảng cách */
+    transition: color 0.15s ease-in-out;
+    font-size: 0.9rem; /* Link điều hướng hơi nhỏ hơn */
+  }
+  .main-nav a:hover {
+    color: #fff;
+  }
+
+  /* Main Content Area */
+  .main-content {
+    padding-top: 20px; /* Giảm padding trên */
+    padding-bottom: 20px; /* Giảm padding dưới */
+  }
+  .content-card {
+    background-color: #fff;
+    padding: 1.5rem; /* Giảm padding */
+    border-radius: 0.25rem; /* Bo góc hơi nhỏ hơn */
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.06); /* Đổ bóng nhẹ hơn */
+    border: 1px solid #dee2e6;
+  }
+  .section-title {
+    font-size: 1.3rem; /* Tiêu đề mục nhỏ hơn */
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 1rem; /* Giảm margin */
+    color: #343a40;
+  }
+  .subsection-title {
+    font-size: 1.1rem; /* Tiêu đề phụ nhỏ hơn */
+    font-weight: 500;
+    margin-top: 1.5rem; /* Điều chỉnh margin */
+    margin-bottom: 0.8rem; /* Giảm margin */
+    color: #495057;
+  }
+
+  /* Action Bar (Add Button & Search) */
+  .action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem; /* Giảm margin */
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .search-input {
+    padding: 0.375rem 0.75rem; /* Giảm padding */
+    font-size: 0.9rem; /* Cỡ chữ hơi nhỏ hơn */
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.2rem; /* Bo góc hơi nhỏ hơn */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    min-width: 200px; /* Điều chỉnh chiều rộng tối thiểu */
+  }
+  .search-input::placeholder {
+    /* Định dạng chữ gợi ý (placeholder) */
+    color: #6c757d;
+    opacity: 1;
+  }
+  .search-input:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  /* Base Button Styles */
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    /* Giảm padding và cỡ chữ cho nút nhỏ hơn */
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    line-height: 1.4; /* Điều chỉnh chiều cao dòng */
+    border-radius: 0.2rem; /* Bo góc hơi nhỏ hơn */
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin: 0 1px; /* Giảm margin (giữa các nút) */
+  }
+
+  /* Specific Button Styles */
+  .btn-primary {
+    /* Nút chính (Thêm, Chi tiết) */
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+  }
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+  }
+  .btn-edit {
+    /* Nút Sửa */
+    color: #000;
+    background-color: #ffc107;
+    border-color: #ffc107;
+  }
+  .btn-edit:hover {
+    background-color: #ffca2c;
+    border-color: #ffc720;
+  }
+  .btn-delete {
+    /* Nút Xóa */
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  .btn-delete:hover {
+    background-color: #bb2d3b;
+    border-color: #b02a37;
+  }
+  .btn-detail {
+    /* Nút Chi tiết */
+    color: #fff;
+    background-color: #0d6efd; /* Giống nút primary */
+    border-color: #0d6efd;
+  }
+  .btn-detail:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+  }
+
+  /* Điều chỉnh nút 'Thêm Dự Án' lớn hơn một chút */
+  .action-bar .btn-primary {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  /* Table Styles */
+  .table-container {
+    overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá rộng */
+  }
+  .project-table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+    border: 1px solid #dee2e6;
+  }
+  .project-table th,
+  .project-table td {
+    /* Giảm padding cho ô trong bảng */
+    padding: 0.5rem 0.75rem;
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+    border-top: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6; /* Thêm viền trái */
+    font-size: 0.9rem; /* Cỡ chữ trong bảng hơi nhỏ hơn */
+  }
+  .project-table th:first-child,
+  .project-table td:first-child {
+    border-left: none; /* Bỏ viền trái cho cột đầu tiên */
+  }
+  .project-table thead th {
+    /* Định dạng header của bảng */
+    vertical-align: middle; /* Căn giữa header theo chiều dọc */
+    border-bottom: 2px solid #dee2e6;
+    background-color: #343a40; /* Header màu xám tối */
+    color: #fff;
+    text-align: inherit; /* Giữ căn lề mặc định (thường là trái) */
+    border-top: none;
+    font-weight: 500; /* Làm chữ header đậm hơn một chút */
+  }
+  /* Đảm bảo các nút trong ô bảng không có thêm khoảng trống dọc */
+  .project-table td .btn {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  /* Độ rộng cột cụ thể (tùy chọn, điều chỉnh nếu cần) */
+  .project-table .id-col {
+    width: 5%;
+    text-align: center;
+  } /* Cột ID */
+  .project-table .name-col {
+    width: 65%;
+  } /* Cột Tên Dự Án */
+  .project-table .action-col {
+    width: 30%;
+    text-align: center;
+  } /* Cột Hành Động */
+
+  /* Footer Styles */
+  .footer {
+    background-color: #212529; /* Giống màu header */
+    color: white;
+    position: fixed; /* Giữ footer cố định ở dưới */
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 0; /* Giảm padding */
+    z-index: 10; /* Đảm bảo footer hiển thị trên các phần tử khác */
+    font-size: 0.8rem; /* Chữ footer nhỏ hơn */
+  }
+  .footer p {
+    margin: 0;
+  }
+
+  /* Pagination Styles */
+  .pagination {
+    display: flex;
+    justify-content: center; /* Căn giữa các nút phân trang */
+    align-items: center;
+    margin-top: 15px; /* Giảm margin */
+    padding-bottom: 10px; /* Giảm padding */
+  }
+  /* Sử dụng kiểu .btn cơ bản và điều chỉnh chi tiết phân trang */
+  .pagination .btn {
+    margin: 0 3px; /* Giảm margin giữa các nút */
+    padding: 0.25rem 0.5rem; /* Giảm thêm padding cho nút phân trang */
+    font-size: 0.8rem; /* Cỡ chữ nhỏ hơn cho phân trang */
+    border: 1px solid #dee2e6; /* Viền nhạt hơn cho trạng thái không hoạt động */
+    background-color: #fff;
+    color: #0d6efd;
+  }
+  .pagination .btn:hover:not(:disabled) {
+    /* Hover cho nút có thể click */
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+  }
+  .pagination .btn-page.active {
+    /* Kiểu cho trang hiện tại */
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+  }
+  .pagination .btn:disabled {
+    /* Kiểu cho nút bị vô hiệu hóa (Trước/Sau ở trang đầu/cuối) */
+    color: #6c757d;
+    cursor: not-allowed;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+  }
+  .pagination .page-numbers {
+    /* Vùng chứa các nút số trang */
+    display: flex;
+    gap: 3px; /* Giảm khoảng cách giữa các số trang */
+  }
+
+  /* --- Kiểu dáng Modal (Popup) --- */
+  .modal {
+    display: none; /* Mặc định ẩn modal */
+    position: fixed; /* Vị trí cố định so với viewport */
+    z-index: 1000; /* Hiển thị trên các phần tử khác */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Cho phép cuộn nếu nội dung modal dài */
+    background-color: rgba(0, 0, 0, 0.5); /* Lớp nền mờ */
+    padding-top: 60px; /* Khoảng cách từ top để modal không bị che bởi header */
+  }
+
+  .modal-content {
+    /* Phần nội dung của modal */
+    background-color: #fefefe; /* Nền trắng */
+    margin: 5% auto; /* Căn giữa modal theo chiều dọc và ngang */
+    padding: 20px; /* Giảm nhẹ padding */
+    border: 1px solid #ccc;
+    width: 90%; /* Chiều rộng tương đối */
+    max-width: 500px; /* Chiều rộng tối đa hơi nhỏ hơn */
+    border-radius: 5px; /* Bo góc hơi nhỏ hơn */
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Đổ bóng */
+    /* Đã xóa các thuộc tính animation */
+  }
+
+  /* Đã xóa quy tắc @keyframes animatetop */
+
+  .modal-header {
+    /* Header của modal */
+    padding-bottom: 10px; /* Giảm padding */
+    border-bottom: 1px solid #eee; /* Đường kẻ phân cách */
+    margin-bottom: 15px; /* Giảm margin */
+    display: flex;
+    justify-content: space-between; /* Tiêu đề và nút đóng cách xa nhau */
+    align-items: center;
+  }
+  .modal-header h2 {
+    /* Tiêu đề trong modal */
+    margin: 0;
+    font-size: 1.3em; /* Tiêu đề modal hơi nhỏ hơn */
+    color: #333;
+  }
+
+  .close-btn {
+    /* Nút đóng (X) */
+    color: #aaa;
+    font-size: 24px; /* Icon đóng hơi nhỏ hơn */
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 5px; /* Thêm padding để dễ click hơn */
+  }
+  .close-btn:hover,
+  .close-btn:focus {
+    color: black;
+    text-decoration: none;
+  }
+
+  /* Form Groups trong Modal */
+  .form-group {
+    margin-bottom: 12px; /* Giảm margin */
+  }
+  .form-group label {
+    /* Nhãn của input */
+    display: block; /* Hiển thị trên một dòng riêng */
+    margin-bottom: 4px; /* Giảm margin */
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9em; /* Nhãn (label) hơi nhỏ hơn */
+  }
+  .form-group input[type="text"],
+  .form-group textarea {
+    /* Input text và textarea */
+    width: 100%;
+    padding: 8px; /* Giảm padding */
+    border: 1px solid #ccc;
+    border-radius: 3px; /* Bo góc hơi nhỏ hơn */
+    box-sizing: border-box; /* Tính cả padding và border vào width */
+    font-size: 0.9em; /* Cỡ chữ input hơi nhỏ hơn */
+  }
+  .form-group textarea {
+    resize: vertical; /* Cho phép thay đổi chiều cao textarea */
+    min-height: 70px; /* Giảm chiều cao tối thiểu */
+  }
+
+  .form-group .error {
+    /* Thông báo lỗi */
+    color: red;
+    font-size: 0.8em; /* Chữ báo lỗi nhỏ hơn */
+    margin-top: 3px; /* Giảm margin */
+    display: none; /* Mặc định ẩn */
+  }
+
+  .modal-footer {
+    /* Footer của modal (chứa nút Hủy, Lưu) */
+    padding-top: 12px; /* Giảm padding */
+    border-top: 1px solid #eee; /* Đường kẻ phân cách */
+    margin-top: 15px; /* Giảm margin */
+    text-align: right; /* Căn phải các nút */
+  }
+  /* Sử dụng kiểu .btn cơ bản cho các nút trong modal */
+  .modal-footer .btn {
+    margin-left: 8px; /* Giảm margin */
+    /* Điều chỉnh padding nếu kiểu .btn cơ bản chưa phù hợp ở đây */
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+  }
+  .btn-cancel {
+    /* Nút Hủy trong modal */
+    background-color: #6c757d; /* Nút Hủy màu xám */
+    border: 1px solid #6c757d;
+    color: #fff;
+  }
+  .btn-cancel:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+  }
+  .btn-save {
+    /* Nút Lưu trong modal */
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+  }
+  .btn-save:hover {
+    background-color: #0b5ed7;
+  }
+
+  /* --- Kiểu dáng Modal Xác nhận Xóa (Điều chỉnh nhỏ) --- */
+  /* Tái sử dụng các class modal cơ bản, có thể điều chỉnh max-width nếu cần */
+  #deleteConfirmModal .modal-content {
+    max-width: 400px; /* Chiều rộng nhỏ hơn cho modal xác nhận */
+  }
+
+  #deleteConfirmModal .modal-header h2 {
+    font-size: 1.2rem; /* Tiêu đề nhỏ hơn */
+  }
+
+  #deleteConfirmModal .modal-body {
+    /* Nội dung chính của modal xác nhận */
+    margin: 15px 0; /* Điều chỉnh margin */
+    font-size: 0.95rem; /* Chữ hơi nhỏ hơn */
+    color: #555;
+    text-align: center; /* Căn giữa chữ */
+  }
+
+  #deleteConfirmModal .modal-footer {
+    /* Footer của modal xác nhận */
+    display: flex;
+    justify-content: center; /* Căn giữa các nút */
+    gap: 10px; /* Khoảng cách giữa các nút */
+    border-top: none; /* Xóa viền trên */
+    padding-top: 0; /* Xóa padding */
+  }
+  /* Sử dụng kiểu nút cơ bản */
+  .btn-secondary {
+    /* Cho nút Hủy trong modal xóa */
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    /* padding kế thừa từ .btn */
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+
+  .btn-danger {
+    /* Cho nút xác nhận Xóa */
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    /* padding kế thừa từ .btn */
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+  }

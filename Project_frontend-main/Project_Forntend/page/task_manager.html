@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Nhiệm Vụ</title>
+
+    <link rel="stylesheet" href="../css/task_mangager.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-title">
+        <!-- Add onclick if you have a goHome function -->
+        <h1 onclick="typeof goHome === 'function' && goHome()">
+          Quản Lý Dự Án
+        </h1>
+      </div>
+      <nav class="header-nav">
+        <!-- Added active class to the correct link -->
+        <a href="#" class="nav-link" onclick="switchpage()">Dự Án</a>
+        <a href="#" class="nav-link active">Nhiệm Vụ của tôi</a>
+        <a href="#" class="nav-link" onclick="out()">Đăng Xuất</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <div class="content-container">
+        <section class="section-header">
+          <h2>Quản lý nhiệm vụ</h2>
+        </section>
+
+        <section class="actions-bar task-actions">
+          <div class="action-group">
+            <select class="select-sort">
+              <option value="">Sắp xếp theo</option>
+              <option value="priority">Độ ưu tiên</option>
+              <option value="due_date">Hạn chót</option>
+              <option value="start_date">Ngày bắt đầu</option>
+            </select>
+            <input
+              type="text"
+              class="search-input task-search"
+              placeholder="Tìm kiếm nhiệm vụ"
+            />
+          </div>
+        </section>
+
+        <section class="task-list">
+          <h2>Danh Sách Nhiệm Vụ</h2>
+          <div class="table-wrapper">
+            <table class="task-table">
+              <thead>
+                <tr>
+                  <!-- Added specific column classes for easier targeting -->
+                  <th class="col-task-name">Tên Nhiệm Vụ</th>
+                  <th class="col-priority">Độ ưu tiên</th>
+                  <th class="col-status">Trạng thái</th>
+                  <th class="col-start-date">Ngày Bắt Đầu</th>
+                  <th class="col-due-date">Hạn Chót</th>
+                  <th class="col-progress">Tiến độ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Group 1: Xây dựng website -->
+                <tr class="task-category" data-group="group1">
+                  <td colspan="6">Xây dựng website thương mại điện tử</td>
+                </tr>
+                <tr class="task-item group1">
+                  <td class="col-task-name">Soạn thảo đề cương dự án</td>
+                  <td class="col-priority">
+                    <span class="badge-pill priority-low">Thấp</span>
+                  </td>
+                  <td class="col-status">
+                    <span class="status-text">In progress</span
+                    ><span class="status-icon"></span>
+                  </td>
+                  <td class="col-start-date">02 - 24</td>
+                  <td class="col-due-date">02 - 27</td>
+                  <td class="col-progress">
+                    <span class="badge-pill progress-on-track"
+                      >Đúng tiến độ</span
+                    >
+                  </td>
+                </tr>
+                <tr class="task-item group1">
+                  <td class="col-task-name">Soạn thảo đề cương dự án</td>
+                  <td class="col-priority">
+                    <span class="badge-pill priority-medium">Trung bình</span>
+                  </td>
+                  <td class="col-status">
+                    <span class="status-text">In progress</span
+                    ><span class="status-icon"></span>
+                  </td>
+                  <td class="col-start-date">02 - 24</td>
+                  <td class="col-due-date">02 - 27</td>
+                  <td class="col-progress">
+                    <span class="badge-pill progress-at-risk">Có rủi ro</span>
+                  </td>
+                </tr>
+                <tr class="task-item group1">
+                  <td class="col-task-name">Soạn thảo đề cương dự án</td>
+                  <td class="col-priority">
+                    <span class="badge-pill priority-high">Cao</span>
+                  </td>
+                  <td class="col-status">
+                    <span class="status-text">Pending</span
+                    ><span class="status-icon"></span>
+                  </td>
+                  <td class="col-start-date">02 - 24</td>
+                  <td class="col-due-date">02 - 27</td>
+                  <td class="col-progress">
+                    <span class="badge-pill progress-late">Trễ hạn</span>
+                  </td>
+                </tr>
+
+                <!-- Group 2: Phát triển ứng dụng -->
+                <tr class="task-category" data-group="group2">
+                  <td colspan="6">Phát triển ứng dụng di động</td>
+                </tr>
+                <tr class="task-item group2">
+                  <td class="col-task-name">Lên lịch họp kickoff</td>
+                  <td class="col-priority">
+                    <span class="badge-pill priority-low">Thấp</span>
+                  </td>
+                  <td class="col-status">
+                    <span class="status-text">In progress</span
+                    ><span class="status-icon"></span>
+                  </td>
+                  <td class="col-start-date">02 - 24</td>
+                  <td class="col-due-date">02 - 27</td>
+                  <td class="col-progress">
+                    <span class="badge-pill progress-at-risk">Có rủi ro</span>
+                  </td>
+                </tr>
+
+                <!-- Group 3: Quản lý dữ liệu - Initially Collapsed -->
+                <tr class="task-category collapsed" data-group="group3">
+                  <td colspan="6">Quản lý dữ liệu khách hàng</td>
+                </tr>
+                <!-- Add potential hidden task items for group 3 if needed -->
+                <tr class="task-item group3 hidden">
+                  <td class="col-task-name">Phân tích dữ liệu</td>
+                  <td class="col-priority">
+                    <span class="badge-pill priority-medium">Trung bình</span>
+                  </td>
+                  <td class="col-status">
+                    <span class="status-text">Planned</span
+                    ><span class="status-icon"></span>
+                  </td>
+                  <td class="col-start-date">03 - 01</td>
+                  <td class="col-due-date">03 - 10</td>
+                  <td class="col-progress"><span>-</span></td>
+                  <!-- Placeholder -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Updated Footer Text -->
+    <footer>© 2025 Quản Lý Dự Án Nhóm by Vu Hoai Nam.</footer>
+
+    <script>
+      // --- Keep your existing functions ---
+      function switchpage() {
+        // Assuming category_manager.html is in the same directory or adjust path
+        window.location.href = "./category_manager.html"; // Make sure this path is correct
+      }
+      function out() {
+        Swal.fire({
+          title: "Bạn chắc chắn muốn đăng xuất?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Đăng xuất",
+          cancelButtonText: "Hủy",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Assuming login1.html is in the same directory or adjust path
+            window.location.href = "login1.html"; // Make sure this path is correct
+          }
+        });
+      }
+      // Optional: Add goHome function if needed
+      // function goHome() {
+      //     window.location.href = "index.html"; // Or your home page
+      // }
+
+      // --- Add JavaScript for Expand/Collapse ---
+      document.addEventListener("DOMContentLoaded", () => {
+        const categoryRows = document.querySelectorAll(
+          ".task-table tbody tr.task-category"
+        );
+
+        categoryRows.forEach((headerRow) => {
+          // Set initial state based on 'collapsed' class
+          const group = headerRow.dataset.group;
+          const items = document.querySelectorAll(
+            `.task-table tbody tr.task-item.${group}`
+          );
+          if (headerRow.classList.contains("collapsed")) {
+            items.forEach((item) => item.classList.add("hidden"));
+          }
+
+          // Add click listener
+          headerRow.addEventListener("click", () => {
+            // Toggle collapsed class on the header row
+            headerRow.classList.toggle("collapsed");
+
+            // Toggle 'hidden' class on the associated item rows
+            items.forEach((item) => {
+              item.classList.toggle("hidden");
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+body{
+font-family:Arial;
+text-align:center;
+background:linear-gradient(135deg,#ff9ecb,#ffd6ea);
+overflow-x:hidden;
+}
+
+h1{
+color:white;
+}
+
+.form{
+background:white;
+padding:20px;
+width:300px;
+margin:auto;
+border-radius:15px;
+}
+
+input,select{
+display:block;
+margin:10px auto;
+padding:10px;
+width:90%;
+}
+
+button{
+background:#ff4da6;
+color:white;
+border:none;
+padding:10px 15px;
+margin:5px;
+border-radius:10px;
+cursor:pointer;
+}
+
+.card{
+width:320px;
+margin:30px auto;
+padding:20px;
+border-radius:20px;
+background:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card img{
+width:200px;
+height:200px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.wish{
+color:#ff1493;
+font-weight:bold;
+}
+
+/* khung thiệp */
+
+.frame1{
+border:6px solid #ff69b4;
+}
+
+.frame2{
+border:6px dashed #ff8fab;
+}
+
+.frame3{
+border:6px solid #ff1493;
+box-shadow:0 0 20px pink;
+}
+
+/* hoa rơi */
+
+.flower{
+position:fixed;
+top:-20px;
+font-size:20px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+/* trái tim */
+
+.heart{
+position:fixed;
+font-size:20px;
+animation:fly 2s linear;
+}
+
+@keyframes fly{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-200px);
+opacity:0;
+}
+}

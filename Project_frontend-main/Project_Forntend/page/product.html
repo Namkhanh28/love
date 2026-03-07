@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi Tiết Dự Án - Quản Lý Nhiệm Vụ</title>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="../css/product.css" />
+    <style>
+      /* Basic Table Styles */
+    </style>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-title">
+        <h1>Quản Lý Dự Án</h1>
+      </div>
+      <nav class="header-nav">
+        <a href="#" class="nav-link" onclick="switchpage()">Dự Án</a>
+        <a href="#" class="nav-link1" onclick="switchpageMision()">Nhiệm Vụ của tôi</a>
+        <a href="#" class="nav-link2" onclick="out()">Đăng Xuất</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <section class="project-info-header">
+        <div class="project-details">
+          <h2 id="project-title"></h2>
+          <!-- Placeholder -->
+          <p class="project-description-content">
+            .
+          </p>
+          <!-- Placeholder -->
+          <button class="btn btn-add-task btn-save" onclick="openAddTaskForm()">
+            <!-- Added btn-save class -->
+            + Thêm nhiệm vụ
+          </button>
+        </div>
+        <div class="members-section">
+          <div class="members-header">
+            <h3>Thành viên</h3>
+            <button class="btn btn-add-member" onclick="showMemberForm()">
+              <!-- Placeholder styling -->
+              + Thêm thành viên
+            </button>
+          </div>
+          <div class="member-list" id="member-list-container">
+            <!-- Member list will be rendered here by JS (Placeholder for now) -->
+            <div class="member-item">
+              <div class="member-avatar">AN</div>
+              <div class="member-info">
+                <span class="member-name">An Nguyễn</span>
+                <span class="member-role">Project owner</span>
+              </div>
+            </div>
+            <div class="member-item">
+              <div class="member-avatar avatar-purple">BA</div>
+              <div class="member-info">
+                <span class="member-name">Bách Nguyễn</span>
+                <span class="member-role">Frontend developer</span>
+              </div>
+            </div>
+            <button class="btn-more-options">...</button>
+            <!-- Removed for simplicity now -->
+          </div>
+        </div>
+      </section>
+
+      <section class="actions-bar task-actions">
+        <div class="action-group">
+          <select
+            class="select-sort form-control"
+            style="max-width: 150px; display: inline-block; margin-right: 10px"
+          >
+            <option value="">Sắp xếp theo</option>
+            <option value="priority">Ưu Tiên</option>
+            <option value="dueDate">Hạn Chót</option>
+            <option value="assignee">Người Phụ Trách</option>
+            <option value="startDate">Ngày Bắt Đầu</option>
+          </select>
+          <input
+            type="text"
+            class="search-input task-search form-control"
+            placeholder="Tìm kiếm nhiệm vụ..."
+            id="taskSearchInput"
+            style="max-width: 250px; display: inline-block"
+          />
+        </div>
+      </section>
+
+      <section class="task-list">
+        <h2>Danh Sách Nhiệm Vụ</h2>
+        <div class="table-wrapper">
+          <table class="task-table">
+            <thead>
+              <tr>
+                <th>Tên Nhiệm Vụ</th>
+                <th>Người Phụ Trách</th>
+                <th>Ưu Tiên</th>
+                <th>Ngày Bắt Đầu</th>
+                <th>Hạn Chót</th>
+                <th>Tiến độ</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- NỘI DUNG BẢNG SẼ ĐƯỢC JAVASCRIPT RENDER VÀO ĐÂY -->
+              <!-- PHẢI ĐỂ TRỐNG CHỖ NÀY -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <!-- Kết thúc main -->
+
+    <!-- ==== MODAL FORM THÊM/SỬA NHIỆM VỤ ==== -->
+    <div class="modal-overlay" id="taskFormModal" style="display: none">
+      <div class="modal-content-container">
+        <!-- Thêm data-editing-id để lưu ID khi sửa -->
+        <form id="taskFormElement">
+          <div class="form-header">
+            <h1 id="taskFormTitle">Thêm Nhiệm Vụ</h1>
+            <!-- Title sẽ thay đổi khi sửa -->
+            <span class="close-btn" onclick="closeTaskForm()">×</span>
+          </div>
+          <input type="hidden" id="taskId" />
+          <!-- Input ẩn để lưu ID khi sửa -->
+
+          <div class="form-group">
+            <label for="taskName">Tên Nhiệm vụ</label>
+            <input
+              type="text"
+              id="taskName"
+              class="form-control"
+              placeholder="Nhập tên nhiệm vụ"
+              required
+            />
+            <span class="error-message" id="taskNameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="assignee">Người phụ trách</label>
+            <select id="assignee" class="form-control" >
+              <option value="" disabled selected>Chọn người phụ trách</option>
+              <!-- Populate this list dynamically based on members later -->
+              <option value="An Nguyễn">An Nguyễn</option>
+              <option value="Bách Nguyễn">Bách Nguyễn</option>
+              <option value="Người Khác">Người Khác</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="taskStatus">Trạng thái</label>
+            <select id="taskStatus" class="form-control" required>
+              <option value="" disabled selected>Chọn trạng thái</option>
+              <option value="todo">To do</option>
+              <option value="inprogress">In Progress</option>
+              <option value="pending">Pending</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="startDate">Ngày bắt đầu</label>
+            <input type="date" id="startDate" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="deadline">Hạn cuối</label>
+            <input type="date" id="deadline" class="form-control" required />
+            <span class="error-message" id="deadlineError"></span>
+          </div>
+          <div class="form-group">
+            <label for="priority">Độ ưu tiên</label>
+            <select id="priority" class="form-control" required>
+              <option value="" disabled selected>Chọn độ ưu tiên</option>
+              <option value="Thấp">Thấp</option>
+              <option value="Trung bình">Trung bình</option>
+              <option value="Cao">Cao</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="progressStatus">Tiến độ</label>
+            <select id="progressStatus" class="form-control" required>
+              <option value="" disabled selected>Chọn tiến độ</option>
+              <option value="Đúng tiến độ">Đúng tiến độ</option>
+              <option value="Có rủi ro">Có rủi ro</option>
+              <option value="Trễ hạn">Trễ hạn</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button
+              type="button"
+              class="btn btn-cancel"
+              onclick="closeTaskForm()"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-save">Lưu</button>
+            <!-- Nút Lưu sẽ gọi submit form -->
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- ==== KẾT THÚC MODAL FORM THÊM/SỬA NHIỆM VỤ ==== -->
+
+    <!-- ==== MODAL FORM THÊM THÀNH VIÊN ==== -->
+    <div class="modal-overlay" id="memberFormModal" style="display: none">
+      <div class="modal-content-container" id="memberForm">
+        <form id="addMemberForm">
+          <div class="form-header">
+            <h1>Thêm Thành Viên</h1>
+            <span class="close-btn" onclick="hideMemberForm()">×</span>
+          </div>
+          <div class="form-group">
+            <label for="memberEmail">Email Thành viên</label>
+            <input
+              type="email"
+              id="memberEmail"
+              class="form-control"
+              placeholder="Nhập email của thành viên"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="memberRole">Vai trò</label>
+            <select id="memberRole" class="form-control" required>
+              <option value="" disabled selected>Chọn vai trò</option>
+              <option value="developer">Developer</option>
+              <option value="designer">Designer</option>
+              <option value="tester">Tester</option>
+              <option value="manager">Manager</option>
+              <option value="member">Member</option>
+              <!-- Added generic role -->
+            </select>
+          </div>
+          <div class="form-actions">
+            <button
+              type="button"
+              class="btn btn-cancel"
+              onclick="hideMemberForm()"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-save">Lưu</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- ==== KẾT THÚC MODAL FORM THÊM THÀNH VIÊN ==== -->
+
+    <footer>© Quản lí dự án năm 2025 by Breave</footer>
+
+    <script src="../js/product.js"></script>
+      
+     
+    </script>
+  </body>
+</html>

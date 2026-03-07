@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý Dự Án</title>
+    <link rel="stylesheet" href="../css/category_manager.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="container header-container">
+        <h1 class="app-title">Quản Lý Dự Án</h1>
+        <nav class="main-nav">
+          <a href="#" class="project">Dự Án</a>
+          <a href="#" class="mision" onclick="switchpage()">Nhiệm Vụ của tôi</a>
+          <a href="#" onclick="out()">Đăng Xuất</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content container">
+      <div class="content-card">
+        <h2 class="section-title">Quản Lý Dự Án Nhóm</h2>
+
+        <div class="action-bar">
+          <button class="btn btn-primary" onclick="openModal()">
+            + Thêm Dự Án
+          </button>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Tìm kiếm dự án"
+            id="searchInput"
+          />
+        </div>
+
+        <h3 class="subsection-title">Danh Sách Dự Án</h3>
+
+        <div class="table-container">
+          <table class="project-table">
+            <thead>
+              <tr>
+                <th class="id-col">ID</th>
+                <th class="name-col">Tên Dự Án</th>
+                <th class="action-col">Hành Động</th>
+              </tr>
+            </thead>
+
+            <tbody id="projectTableBody"></tbody>
+          </table>
+          <div class="pagination">
+            <button class="btn btn-prev" onclick="prevPage()" disabled>
+              
+            </button>
+
+            <span class="page-numbers">
+              <button class="btn btn-page active" onclick="goToPage(1)">
+                1
+              </button>
+              <button class="btn btn-page" onclick="goToPage(2)">2</button>
+              <button class="btn btn-page" onclick="goToPage(3)">3</button>
+            </span>
+            <button class="btn btn-next" onclick="nextPage()">></button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="footer">
+      <p>© 2025 Quản lý Dự Án Nhóm by Breave</p>
+    </div>
+
+    <!-- **MODAL:** Cấu trúc HTML cho form popup -->
+
+    <div id="projectModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Thêm Dự Án</h2>
+          <span class="close-btn" onclick="closeModal()">×</span>
+        </div>
+
+        <form id="projectForm" onsubmit="saveProject(event)">
+          <input type="hidden" id="projectId" name="projectId" />
+          <div class="form-group">
+            <label for="projectName">Tên dự án</label>
+
+            <input
+              type="text"
+              id="projectName"
+              name="projectName"
+              placeholder="Nhập tên dự án"
+              required
+            />
+            <br />
+            <span class="error" id="nameError">Lỗi tên dự án</span>
+          </div>
+          <div class="form-group">
+            <label for="projectDesc">Mô tả dự án</label>
+            <!-- <span class="error" id="decsError">Lỗi tên dự án</span> -->
+            <textarea
+              id="projectDesc"
+              name="projectDesc"
+              placeholder="Nhập mô tả chi tiết"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-cancel" onclick="closeModal()">
+              Hủy
+            </button>
+
+            <button type="submit" class="btn btn-save" onclick="saveProject()">
+              Lưu
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="deleteConfirmModal" class="modal" style="display: none">
+      <div class="modal-content" style="max-width: 450px">
+        <div class="modal-header">
+          <h2 style="font-size: 1.4rem">Xác nhận xoá</h2>
+
+          <span class="close-btn" onclick="closeDeleteConfirmModal()">×</span>
+        </div>
+        <div class="modal-body">
+          <p
+            id="deleteConfirmMessage"
+            style="margin-bottom: 20px; font-size: 1rem"
+          >
+            Bạn chắc chắn muốn xoá dự án này?
+          </p>
+        </div>
+        <div class="modal-footer" style="text-align: center">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeDeleteConfirmModal()"
+            style="margin-right: 10px"
+          >
+            Hủy
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            id="confirmDeleteButton"
+            onclick="confirmActualDelete()"
+          >
+            Xóa
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/category_manage.js"></script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 24px 32px 32px 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        #new-task {
+            width: 75%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #add-btn {
+            padding: 8px 16px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+        #add-btn:hover {
+            background: #0056b3;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 24px;
+        }
+        li {
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px 12px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .delete-btn {
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 10px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background: #b52a37;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .task-label {
+            flex: 1;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <div>
+            <input type="text" id="new-task" placeholder="Nhập công việc...">
+            <button id="add-btn">Thêm</button>
+        </div>
+        <ul id="task-list"></ul>
+    </div>
+    <script>
+        const newTaskInput = document.getElementById('new-task');
+        const addBtn = document.getElementById('add-btn');
+        const taskList = document.getElementById('task-list');
+
+        function addTask() {
+            const taskText = newTaskInput.value.trim();
+            if (taskText === '') return;
+            const li = document.createElement('li');
+            const label = document.createElement('span');
+            label.textContent = taskText;
+            label.className = 'task-label';
+            label.onclick = function() {
+                label.classList.toggle('completed');
+            };
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Xóa';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.onclick = function() {
+                taskList.removeChild(li);
+            };
+            li.appendChild(label);
+            li.appendChild(deleteBtn);
+            taskList.appendChild(li);
+            
+            newTaskInput.value = '';
+            newTaskInput.focus();
+        }
+
+        addBtn.onclick = addTask;
+        newTaskInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') addTask();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký</title> 
+    <link rel="stylesheet" href="../css/register.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+
+    <div>
+      <h1>Đăng ký</h1>
+      <form action="" id="registerForm">
+        <div class="container">
+          <input type="text" placeholder="Họ và tên" name="name"  />
+        
+          <br />
+          <input type="text" placeholder="Email" name="email"  />
+          <br />
+          <input
+            type="password"
+            placeholder="Mật khẩu"
+            name="password"
+            autocomplete="new-password"
+            required
+          />
+          <br />
+          <input
+            type="password"
+            placeholder="Xác nhận mật khẩu"
+            name="confirm_password"
+            autocomplete="new-password"
+            
+          />
+          <br />
+          <button type="submit">Đăng kí</button> 
+          <br />
+          <p>Đã có tài khoản? <a href="login1.html">Đăng nhập</a></p>
+        </div>
+      </form>
+    </div>
+   
+    <script src="../js/register.js">    </script>
+  </body>
+</html>
