@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đếm số lần truy cập</title>
+</head>
+<body>
+    <p id="visitText"></p>
+    <script>
+        let count = localStorage.getItem("visitCount");
+        if (count === null) {
+            count = 1;
+        } else {
+           
+            count = parseInt(count) + 1;
+        }
+        localStorage.setItem("visitCount", count);
+        document.getElementById("visitText").innerText =
+            "Bạn đã truy cập trang này " + count + " lần";
+    </script>
+
+</body>
+</html>

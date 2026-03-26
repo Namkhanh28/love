@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body class="tbody">
+    <button class="randomColor">Đổi màu nền</button>
+    <script>
+      let x, y, z;
+      document
+        .getElementsByClassName("randomColor")[0]
+        .addEventListener("click", () => {
+          x = Math.floor(Math.random() * 256);
+          y = Math.floor(Math.random() * 256);
+          z = Math.floor(Math.random() * 256);
+          let bgC = "rgb(" + x + "," + y + "," + z + ")";
+          document.getElementsByClassName("tbody")[0].style.backgroundColor =
+            bgC;
+        });
+    </script>
+  </body>
+</html>

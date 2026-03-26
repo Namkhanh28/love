@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Danh sách sinh viên</title>
+    <style>
+      body {
+        font-family: Arial;
+      }
+      table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 20px auto;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center">Danh sách Sinh viên</h1>
+    <div>
+      <input type="text" placeholder="Tên sinh viên" id="student_name" />
+      <input type="number" placeholder="Tuổi" id="student_age" />
+      <input type="text" placeholder="Lớp(ví dụ: CNTT3 )" id="student_class" />
+      <button id="btn_add" type="submit">Thêm sinh viên</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tên sinh viên</th>
+          <th>Tuổi</th>
+          <th>Lớp</th>
+        </tr>
+      </thead>
+      <tbody id="studentTable"></tbody>
+    </table>
+
+    <script src="./bt3.js"></script>
+  </body>
+</html>

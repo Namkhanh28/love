@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .black {
+        color: white;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Toggle Dark/Light Mode</h1>
+    <p>Click the button to toggle between dark and light mode for this page</p>
+    <button onclick="darkMode()">Toggle dark mode</button>
+    <script>
+      function darkMode() {
+        h1E = document.getElementsByTagName("h1")[0].classList.toggle("black");
+        pE = document.getElementsByTagName("p")[0].classList.toggle("black");
+        bodyE = document
+          .getElementsByTagName("body")[0]
+          .classList.toggle("black");
+      }
+    </script>
+  </body>
+</html>
