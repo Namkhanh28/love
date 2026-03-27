@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <form id="form">
+      <h1>Quản Lý Ca Sĩ Nổi Tiếng</h1>
+      <h2 id="title">Thêm Ca Sĩ Mới</h2>
+      <label for="">Tên ca sĩ</label>
+      <input type="text" id="name" />
+      <label for="">Ngày sinh</label>
+      <input type="date" id="birthday" />
+      <label for="">Quốc tịch</label>
+      <select id="nationality">
+        <option value="select">-- Chọn quốc tịch --</option>
+        <option value="Việt Nam">Việt Nam</option>
+        <option value="Mỹ">Mỹ</option>
+        <option value="Hàn Quốc">Hàn Quốc</option>
+      </select>
+      <label for="">Số lượt theo dõi (Follower)</label>
+      <input type="number" id="followers" />
+      <label for="">Thể loại âm nhạc chính</label>
+      <select id="genre">
+        <option value="type">-- Chọn thể loại --</option>
+        <option value="V-Pop">V-Pop</option>
+        <option value="K-Pop">K-Pop</option>
+        <option value="Pop">Pop</option>
+        a
+      </select>
+      <button id="btn-add">Thêm ca sĩ</button>
+      <button id="btn-cancel" style="display: none">Hủy</button>
+    </form>
+    <input
+      type="text"
+      placeholder="Tìm kiếm theo tên ca sĩ..."
+      id="search-singer"
+    />
+    <select name="" id="">
+      <option value="">Sắp xếp mặc định</option>
+    </select>
+    <button>Reset</button>
+    <table border="1" cellspacing="0">
+      <tr>
+        <th>STT</th>
+        <th>Tên ca sĩ</th>
+        <th>Ngày sinh</th>
+        <th>Quốc tịch</th>
+        <th>Follower</th>
+        <th>Thể loại</th>
+        <th>Hành động</th>
+      </tr>
+      <tbody id="tbody"></tbody>
+    </table>
+    <script src="./bt2.js"></script>
+  </body>
+</html>
